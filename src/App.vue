@@ -3,41 +3,51 @@
     <h1>Znajomi</h1>
     
     <person-form @add:person="addPerson"/>
-    <persons-table :personsSource="persons"/>
+    <authors-table :authorsSource="authors"/>
   </div>
 </template>
 
 <script>
-  import PersonsTable from '@/components/PersonsTable.vue'
+  import axios from 'axios'
+  import AuthorsTable from '@/components/AuthorsTable.vue'
   import PersonForm from '@/components/PersonForm.vue'
-
   export default {
     name: 'app',
     components: {
-      PersonsTable,
+      AuthorsTable,
       PersonForm,
     },
     data() {
       return {
-        persons: []
+        authors: []
       }
     },
     methods: {
-      addPerson(person) {
-        this.persons = [...this.persons, person] // tu nowo dodany pracownik nie otrzymuje unikalnego id
-      },
-      async getPersons() {
-        try {
-          const response = await fetch('https://jsonplaceholder.typicode.com/users')
-          const data = await response.json()
-          this.persons = data
-        } catch (error) {
-          console.error(error)
-        }
-      },
+      // addPerson(person) {
+        // this.persons = [...this.persons, person] // tu nowo dodany pracownik nie otrzymuje unikalnego id
+      // },
+      // async getAuthors() {
+      //   try {
+      //     const response = await fetch('http://localhost:8080/authors')
+      //     const data = await response.json()
+      //     this.authors = data
+      //   } catch (error) {
+      //     console.error(error)
+      //   }
+      // },
+      getAuthors() {
+        var page = "http://localhost:8080/authors"
+        axios.get(page)
+        .then(
+            ({data})=>{
+              console.log("dane " + data);
+              this.authors = data;
+            }
+        );
+      }
     },
     mounted() {
-      this.getPersons()
+      this.getAuthors()
     },
   }
 </script>
