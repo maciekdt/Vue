@@ -1,7 +1,7 @@
 <template>
     <div id="books-form">
     <form  @submit.prevent="handleSubmit">
-        <label>Imię i nazwisko</label>
+        <label>tytul</label>
         <input
             v-model="person.name"
             type="text"
