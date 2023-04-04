@@ -1,5 +1,6 @@
 <template>
     <div id="authors-table">
+        <h1>Autorzy</h1>
         <table>
         <thead>
             <tr>
@@ -16,7 +17,23 @@
                 </tr>
             </tbody>
         </table>
-        <button>New</button>
+        <b-table
+            id="my-table"
+            :items="authorsSource"
+            :per-page="perPage"
+            :current-page="currentPage"
+            small
+        ></b-table>
+        <b-pagination
+            v-model="currentPage"
+            :total-rows="rows"
+            :per-page="perPage"
+            aria-controls="my-table"
+        ></b-pagination>
+        <p class="mt-3">Strona: {{ currentPage }}</p>
+        <router-link to="/authors-form">
+            <button>New</button>
+        </router-link>
     </div>
 </template>
 
@@ -25,6 +42,8 @@
     name: 'authors-table',
     data() {
         return {
+            perPage: 3,
+            currentPage: 1,
             authorsSource: []
         };
     },
@@ -45,6 +64,11 @@
         catch (error) {
           console.error(error)
         }
+      }
+    },
+    computed: {
+      rows() {
+        return this.authorsSource.length
       }
     },
     mounted() {

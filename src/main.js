@@ -1,15 +1,16 @@
 import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router';
-import AuthorsForm from './components/AuthorsForm'
 import AuthorsTable from './components/AuthorsTable'
+import AuthorsForm from './components/AuthorsForm'
+
 
 
 Vue.config.productionTip = false
-    //Vue.use(VueRouter);
+Vue.use(VueRouter);
 
 const routes = [
-    { path: '/', component: AuthorsTable },
+    { path: '/authors', component: AuthorsTable },
     { path: '/authors-form', component: AuthorsForm },
 ];
 

@@ -1,5 +1,6 @@
 <template>
  <div id="author-form">
+    <h1>Add Author</h1>
     <form  @submit.prevent="handleSubmit">
         <label>Id</label>
         <input
@@ -28,7 +29,9 @@
         <p v-if="success" class="success-message">
             Dane poprawnie zapisano
         </p>
-        <button>Dodaj autora</button>
+        <router-link to="/authors">
+            <button>Dodaj autora</button>
+        </router-link>
     </form>
  </div>
 </template>

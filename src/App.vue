@@ -1,21 +1,15 @@
 <template>
   <div id="app" class="small-container">
-    <h1>Autorzy</h1>
-    <authors-table/>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-  import AuthorsTable from '@/components/AuthorsTable.vue'
-  //import AuthorsForm from '@/components/AuthorsForm.vue'
+
 
   export default {
     name: 'app',
-    components: {
-      AuthorsTable,
-      //AuthorsForm,
-    }
-    
+  
   }
 </script>
 
