@@ -1,46 +1,54 @@
 <template>
   <div id="app" class="small-container">
-    <h1>Autorzy</h1>
+    <h1>Znajomi</h1>
     
-    <!--<person-form @add:person="addPerson"/>-->
+    <person-form @add:person="addPerson"/>
     <authors-table :authorsSource="authors"/>
   </div>
 </template>
 
 <script>
+  import axios from 'axios'
   import AuthorsTable from '@/components/AuthorsTable.vue'
-  //import PersonForm from '@/components/PersonForm.vue'
-
+  import PersonForm from '@/components/PersonForm.vue'
   export default {
     name: 'app',
     components: {
       AuthorsTable,
-      //PersonForm,
+      PersonForm,
     },
     data() {
       return {
         authors: []
       }
     },
-
-    
     methods: {
-      async getAuthors() {
-        try {
-          const response = await fetch('http://localhost:8080/authors')
-          const data = await response.json()
-          console.log(data[1].firstName)
-          this.authors = data
-        } 
-        catch (error) {
-          console.error(error)
-        }
+      // addPerson(person) {
+        // this.persons = [...this.persons, person] // tu nowo dodany pracownik nie otrzymuje unikalnego id
+      // },
+      // async getAuthors() {
+      //   try {
+      //     const response = await fetch('http://localhost:8080/authors')
+      //     const data = await response.json()
+      //     this.authors = data
+      //   } catch (error) {
+      //     console.error(error)
+      //   }
+      // },
+      getAuthors() {
+        var page = "http://localhost:8080/authors"
+        axios.get(page)
+        .then(
+            ({data})=>{
+              console.log("dane " + data);
+              this.authors = data;
+            }
+        );
       }
     },
     mounted() {
       this.getAuthors()
     },
-    
   }
 </script>
 
