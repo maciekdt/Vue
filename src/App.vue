@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="small-container">
-    <h1>Znajomi</h1>
+    <h1>Autorzy</h1>
     
     <!--<person-form @add:person="addPerson"/>-->
     <authors-table :authorsSource="authors"/>
@@ -40,6 +40,7 @@
     mounted() {
       this.getAuthors()
     },
+    
   }
 </script>
 
