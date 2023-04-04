@@ -8,9 +8,9 @@
             </tr>
         </thead>
             <tbody>
-                <tr v-for="author in authorSource" :key="author.id">
+                <tr v-for="author in authorsSource" :key="author.id">
                     <td>{{ author.firstName }}</td>
-                    <td>{{ author.lastName }}</td>
+                    <td>{{ author.latsName }}</td>
                 </tr>
             </tbody>
         </table>
